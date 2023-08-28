@@ -25,36 +25,42 @@ class MyItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        color: getColor(FizzBuzz.fizzBuzz(index)),
         child: ListTile(
-      leading: getLeadingIcon(FizzBuzz.fizzBuzz(index)),
-      title: Text(FizzBuzz.fizzBuzz(index).isEmpty
-          ? index.toString()
-          : FizzBuzz.fizzBuzz(index)),
-    ));
-    // child: ListTile(
-    //   leading: Icon(FizzBuzz.fizzBuzz(index).isEmpty
-    //       ? Icons.thumb_down
-    //       : Icons.thumb_up_sharp),
-    //   title: Text(FizzBuzz.fizzBuzz(index).isEmpty
-    //       ? index.toString()
-    //       : FizzBuzz.fizzBuzz(index)),
-    // ),
+          leading: getLeadingIcon(FizzBuzz.fizzBuzz(index)),
+          title: Text(FizzBuzz.fizzBuzz(index) == FizzBuzzAnswer.nothing
+              ? index.toString()
+              : FizzBuzz.fizzBuzz(index).name),
+        ));
   }
 
-  Icon getLeadingIcon(String s) {
-    if (s.isEmpty) {
-      return const Icon(Icons
-          .check_box_outline_blank); // Return check icon if condition is true
-    } else if (s == "fizz") {
-      return const Icon(
-          Icons.fire_truck); // Return close icon if condition is false
-    } else if (s == "buzz") {
-      return const Icon(Icons.air); // Return close icon if condition is false
-    } else if (s == "fizzbuzz") {
-      return const Icon(Icons
-          .baby_changing_station); // Return close icon if condition is false
-    } else {
-      throw Exception("No Icon found");
+  Icon getLeadingIcon(Enum s) {
+    switch (s) {
+      case FizzBuzzAnswer.nothing:
+        return const Icon(Icons.check_box_outline_blank);
+      case FizzBuzzAnswer.fizz:
+        return const Icon(Icons.fire_truck);
+      case FizzBuzzAnswer.buzz:
+        return const Icon(Icons.air);
+      case FizzBuzzAnswer.fizzbuzz:
+        return const Icon(Icons.baby_changing_station);
+      default:
+        throw Exception("No Icon found");
+    }
+  }
+
+  Color getColor(Enum s) {
+    switch (s) {
+      case FizzBuzzAnswer.nothing:
+        return Colors.white;
+      case FizzBuzzAnswer.fizz:
+        return Colors.cyan;
+      case FizzBuzzAnswer.buzz:
+        return Colors.orange;
+      case FizzBuzzAnswer.fizzbuzz:
+        return Colors.purple;
+      default:
+        throw Exception("No Color found");
     }
   }
 }

@@ -1,16 +1,16 @@
 class FizzBuzz {
-  static String fizzBuzz(int index) {
+  static FizzBuzzAnswer fizzBuzz(int index) {
     if (index == 0) {
-      return "";
+      return FizzBuzzAnswer.nothing;
     }
     if (index % 5 == 0 && index % 7 == 0) {
-      return "fizzbuzz";
+      return FizzBuzzAnswer.fizzbuzz;
     } else if (index % 5 == 0) {
-      return "fizz";
+      return FizzBuzzAnswer.fizz;
     } else if (index % 7 == 0) {
-      return "buzz";
+      return FizzBuzzAnswer.buzz;
     } else {
-      return "";
+      return FizzBuzzAnswer.nothing;
     }
   }
 }
